@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class userDAOImplement implements userDAO{
 
 		try {
 			connection = DAOUtilities.getConnection();	// Get our database connection from the manager
-			String sql = "SELECT Role.roleId, Role.role, Users.userId, Users.username, Users.password, Users.firstName, Users.lastName, Users.email  FROM Role INNER JOIN Users ON Role.roleId = Users.roleId";			// Our SQL query
+			String sql = "SELECT * FROM Users";			// Our SQL query
 			//String sql = "SELECT * FROM Users";			// Our SQL query
 			stmt = connection.prepareStatement(sql);	// Creates the prepared statement from the query
 			
@@ -32,20 +33,15 @@ public class userDAOImplement implements userDAO{
 			while (rs.next()) {
 				// We need to populate a User object with info for each row from our query result
 				User user = new User();
-				Role role = new Role();
-				role.setRoleId(Integer.parseInt(rs.getString("roleId")));
-				role.setRole(rs.getString("role"));
 				// Each variable in our User object maps to a column in a row from our results.
 				user.setUserId(Integer.parseInt(rs.getString("userId")));
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 				user.setFirstName(rs.getString("firstName"));
 				user.setLastName(rs.getString("lastName"));
-				user.setEmail(rs.getString("email"));
+				user.setAccountId(Integer.parseInt(rs.getString("accountId")));
+				user.setRoleId(Integer.parseInt(rs.getString("roleId")));
 				
-				
-				
-				user.setRole(role);
 			
 				// Finally we add it to the list of Book objects returned by this query.
 				users.add(user);
@@ -62,38 +58,141 @@ public class userDAOImplement implements userDAO{
 			closeResources();
 		}
 		
-		// return the list of Book objects populated by the DB.
+		// return the list of users objects populated by the DB.
 		return users;
 	}
 
-	public List<User> getUserByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUserByName(String name) {
+		User user=null;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "SELECT * FROM Users WHERE username LIKE ?";
+			stmt = connection.prepareStatement(sql);
+			// This command populate the 1st '?' with the title and wildcards, between ' '
+						stmt.setString(1, "%" + name + "%");
+			ResultSet rs =stmt.executeQuery();
+			
+			while(rs.next()){
+				user=new User();
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setFirstName(rs.getString("firstName"));
+				user.setLastName(rs.getString("lastName"));
+				
+				user.setAccountId(Integer.parseInt(rs.getString("accountid")));
+				user.setRoleId(Integer.parseInt(rs.getString("roleid")));
+				
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			// We need to make sure our statements and connections are closed, 
+			// or else we could wind up with a memory leak
+			closeResources();
+		}
+
+		return user;
 	}
 
-	public List<User> getUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public List<User> getBooksLessThanPrice(double price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public User getUserByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		User user=null;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "SELECT * FROM Users WHERE userid = ?";
+			stmt = connection.prepareStatement(sql);
+			
+						stmt.setInt(1, id);
+			ResultSet rs =stmt.executeQuery();
+			
+			while(rs.next()){
+				user=new User();
+				user.setUserId(rs.getInt("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setFirstName(rs.getString("firstName"));
+				user.setLastName(rs.getString("lastName"));
+				user.setAccountId(Integer.parseInt(rs.getString("accountid")));
+				user.setRoleId(Integer.parseInt(rs.getString("roleid")));
+				
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			// We need to make sure our statements and connections are closed, 
+			// or else we could wind up with a memory leak
+			closeResources();
+		}
+
+		return user;
 	}
 
 	public boolean addUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO Users (userid,username, password, firstname, lastname, accountid ,roleid )  VALUES ( default, ?, ?, ?, ?, ?, ?)"; // Were using a lot of ?'s here...
+			stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS );
+			
+			// But that's okay, we can set them all before we execute
+		
+			stmt.setString(1, user.getUsername());
+			stmt.setString(2, user.getPassword());
+			stmt.setString(3, user.getFirstName());
+			stmt.setString(4, user.getLastName());
+			stmt.setInt(5, user.getAccountId());
+			
+			stmt.setInt(6, user.getRoleId());
+		
+			
+			
+			// If we were able to add our book to the DB, we want to return true. 
+			// This if statement both executes our query, and looks at the return 
+			// value to determine how many rows were changed
+			if (stmt.executeUpdate() != 0)
+				return true;
+			else
+				return false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeResources();
+		}
 	}
 
 	public boolean updateUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "UPDATE users SET username=?, password=?, firstname=?, lastname=?, accountid=?, roleid=? WHERE userid=?";
+			stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1, user.getUsername());
+			stmt.setString(2, user.getPassword());
+			stmt.setString(3, user.getFirstName());
+			stmt.setString(4, user.getLastName());
+			stmt.setInt(5, user.getAccountId());
+			stmt.setInt(6, user.getRoleId());
+			stmt.setInt(7, user.getUserId());
+			
+			if (stmt.executeUpdate() != 0)
+				return true;
+			else
+				return false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeResources();
+		}
 	}
 
 	public boolean deleteUserByID(int id) {
@@ -119,5 +218,24 @@ public class userDAOImplement implements userDAO{
 				e.printStackTrace();
 			}
 		}
+/*
+ * 
+ * This method return true if the user exist 
+ * 
+ * 
+ * */
+		public List<User>  findUser(String username, String password) {
+			
+			return null;
+		}
+
+		public List<User> getUserByEmail(String email) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		
+
+		
 
 }

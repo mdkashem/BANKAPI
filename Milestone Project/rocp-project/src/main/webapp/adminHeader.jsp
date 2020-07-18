@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PubHub</title>
+<title>MYBANK</title>
 <link rel="shortcut icon" href="resources/imgs/favicon.png" type="image/x-icon">
 
 <!-- CSS - Custom fonts -->
@@ -30,7 +30,7 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-image:url('${request.contextPath}resources/imgs/header.jpg'">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -49,11 +49,11 @@
 					<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="InsertTag.jsp">Creat a New User</a></li>
+                          <li><a href="AddUser.jsp">Creat a New User</a></li>
                           <li class="divider"></li>
                           <li><a href="searchByTag.jsp">Modify User</a></li>
                            <li class="divider"></li>
-                          <li><a href="DisplayAllTagsServlet">View All Users</a></li>
+                          <li><a href="DisplayAllUsersServlet">View All Users</a></li>
                            <li class="divider"></li>
                           <li><a href="DisplayToDeleteServlet">Delete User</a></li>
                         </ul>
@@ -65,6 +65,16 @@
                           <li><a href="BookPublishing">Search by Name </a></li>
                           <li class="divider"></li>
                           <li><a href="PublishBook">Search by Account Number</a></li>
+                         
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="getAllAccounts">View All Account </a></li>
+                          <li class="divider"></li>
+                          <li><a href="PublishBook">Search by Account number</a></li>
                          
                         </ul>
                     </li>

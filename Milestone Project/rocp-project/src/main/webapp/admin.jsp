@@ -28,23 +28,24 @@
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/ebook1.jpg');"></div>
+                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/deposit.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Educate.</h2>
+                   <h2>OPEN SAVING ACCOUNT...</h2>
                 </div>
             </div>
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/ebook2.jpg');"></div>
+                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/card.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Inspire.</h2>
+                    <h2>BUSINESS CREDIT CARD WITH LOW INTERREST RATE...</h2>
                 </div>
             </div>
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/ebook3.jpg');"></div>
+                <div class="fill" style="background-image:url('${request.contextPath}resources/imgs/business.jpg');"></div>
+                
                 <div class="carousel-caption">
-                    <h2>Exchange ideas.</h2>
+                    <h2>WE ARE HERE TO HELP YOUR BUSINESS ...</h2>
                 </div>
             </div>
         </div>

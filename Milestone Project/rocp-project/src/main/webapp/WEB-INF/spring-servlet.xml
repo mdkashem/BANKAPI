@@ -47,7 +47,7 @@
      "org.springframework.web.servlet.view.InternalResourceViewResolver">
    <property name="prefix" value="/WEB-INF/"/>
  </bean>
- <mvc:resources mapping="/resources/**" location="/resources/styles/"
+ <mvc:resources mapping="/resources/**" location="/resources/"
 	cache-period="31556926"/>
 	<mvc:annotation-driven />
 

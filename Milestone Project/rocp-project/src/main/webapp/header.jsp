@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PubHub</title>
+<title>Bank</title>
 <link rel="shortcut icon" href="resources/imgs/favicon.png" type="image/x-icon">
 
 <!-- CSS - Custom fonts -->
@@ -23,68 +23,75 @@
 <link rel="stylesheet" type="text/css" href="resources/libraries/css/freelancer.css"/>
 <link rel="stylesheet" type="text/css" href="resources/libraries/css/half-slider.css"/>
 
+
 <!-- CSS - Custom -->
 <link rel="stylesheet" type="text/css" href="resources/styles/custom.css"/>
+<link rel="stylesheet" type="text/css" href="resources/styles/.css"/>
+
 
 </head>
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav  class="navbar navbar-default navbar-fixed-top" style="background-image:url('${request.contextPath}resources/imgs/header.jpg'">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
+            <div class="navbar-header page-scroll" >
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath }">My Bank</a>            
+                <a class="navbar-brand" href="${pageContext.request.contextPath }">My Bank</a>  
+               
+           
+           
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Book Tags<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transfer Money<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="InsertTag.jsp">Creat Tag</a></li>
+                          <li><a href="InsertTag.jsp">Saving to checking account</a></li>
                           <li class="divider"></li>
-                          <li><a href="searchByTag.jsp">Search by Tag Name</a></li>
+                          <li><a href="searchByTag.jsp">Checking to saving account</a></li>
                            <li class="divider"></li>
-                          <li><a href="DisplayAllTagsServlet">View Tags</a></li>
+                          <li><a href="DisplayAllTagsServlet">Wire Transfer</a></li>
                            <li class="divider"></li>
-                          <li><a href="DisplayToDeleteServlet">Delete Tag</a></li>
+                          <li><a href="DisplayToDeleteServlet">International</a></li>
                         </ul>
                     </li> <!--  book tags end -->
 					
 					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Book Publishing<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Deposit<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="BookPublishing">Home (Level 100)</a></li>
+                          <li><a href="BookPublishing">Saving</a></li>
                           <li class="divider"></li>
-                          <li><a href="PublishBook">Publish Book</a></li>
+                          <li><a href="PublishBook">Checking</a></li>
                          
                         </ul>
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Marketplace<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Check Balance<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="Marketplace">Home (Level 200)</a></li>
+                          <li><a href="Marketplace">Saving Balance</a></li>
                           <li class="divider"></li>
-					      <li><a href="#">Cart</a></li>
-					      <li><a href="#">Orders</a></li>
+					      <li><a href="#">Personal</a></li>
+					      <li><a href="#">Business</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fan Outreach<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">LOG IN<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="FanOutreach">Home (Level 300)</a></li>
+                        
                           <li class="divider"></li>
-                          <li><a href="#">Follow/Unfollow</a></li>
-                          <li><a href="#">Talk to your fans</a></li>
+                          <li><a href="login.jsp">Admin</a></li>
+                          <li><a href="#">Employee</a></li>
+                          <li><a href="#">User</a></li>
                         </ul>
                     </li>
 

@@ -3,22 +3,110 @@
   <display-name>rocp-project</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
+    <welcome-file>hello.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
-  
   <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.htm</url-pattern>
-        <url-pattern>*.css</url-pattern>
-        <url-pattern>*.js</url-pattern>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.mp4</url-pattern>
+    <url-pattern>*.PNG</url-pattern>
+    <url-pattern>*.js</url-pattern>
   </servlet-mapping>
-  
-  
-
+  <servlet>
+    <description></description>
+    <display-name>DisplayAllUsersServlet</display-name>
+    <servlet-name>DisplayAllUsersServlet</servlet-name>
+    <servlet-class>com.mdkashem.servlet.DisplayAllUsersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAllUsersServlet</servlet-name>
+    <url-pattern>/DisplayAllUsersServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>servlet1</display-name>
+    <servlet-name>servlet1</servlet-name>
+    <servlet-class>com.mdkashem.servlet.servlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servlet1</servlet-name>
+    <url-pattern>/servlet1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminLogIng</display-name>
+    <servlet-name>AdminLogIng</servlet-name>
+    <servlet-class>com.mdkashem.servlet.AdminLogIng</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminLogIng</servlet-name>
+    <url-pattern>/AdminLogIng</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminLogin</display-name>
+    <servlet-name>AdminLogin</servlet-name>
+    <servlet-class>com.mdkashem.servlet.AdminLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminLogin</servlet-name>
+    <url-pattern>/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayAllAccountTypeServlet</display-name>
+    <servlet-name>DisplayAllAccountTypeServlet</servlet-name>
+    <servlet-class>com.mdkashem.servlet.DisplayAllAccountTypeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAllAccountTypeServlet</servlet-name>
+    <url-pattern>/DisplayAllAccountTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayAllAccounts</display-name>
+    <servlet-name>DisplayAllAccounts</servlet-name>
+    <servlet-class>com.mdkashem.servlet.DisplayAllAccounts</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAllAccounts</servlet-name>
+    <url-pattern>/getAllAccounts</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteUserServlet</display-name>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <servlet-class>com.mdkashem.servlet.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <url-pattern>/DeleteUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserServlet</display-name>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>com.mdkashem.servlet.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <url-pattern>/UpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserFinallyServelet</display-name>
+    <servlet-name>UpdateUserFinallyServelet</servlet-name>
+    <servlet-class>com.mdkashem.servlet.UpdateUserFinallyServelet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserFinallyServelet</servlet-name>
+    <url-pattern>/UpdateUserFinally</url-pattern>
+  </servlet-mapping>
 </web-app>

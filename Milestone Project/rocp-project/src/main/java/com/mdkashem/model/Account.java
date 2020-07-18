@@ -1,15 +1,15 @@
 package com.mdkashem.model;
 
-public class Acccount {
+public class Account {
 	  private int accountId; // primary key
 	  private double balance;  // not null
 	  private int statusId ;
 	  private int typeId;
-	public Acccount() {
+	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Acccount(int accountId, double balance, int statusId, int typeId) {
+	public Account(int accountId, double balance, int statusId, int typeId) {
 		super();
 		this.accountId = accountId;
 		this.balance = balance;
@@ -60,7 +60,7 @@ public class Acccount {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Acccount other = (Acccount) obj;
+		Account other = (Account) obj;
 		if (accountId != other.accountId)
 			return false;
 		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))

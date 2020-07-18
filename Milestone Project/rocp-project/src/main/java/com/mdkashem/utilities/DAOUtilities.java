@@ -4,6 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mdkashem.dao.AccountDAO;
+import com.mdkashem.dao.AccountDAOImpl;
+import com.mdkashem.dao.AccountTypeDAO;
+import com.mdkashem.dao.AccountTypeImplements;
+import com.mdkashem.dao.RoleDAO;
+import com.mdkashem.dao.RoleDAOImpl;
+import com.mdkashem.dao.StatusDAO;
+import com.mdkashem.dao.StatusDAOImplements;
 import com.mdkashem.dao.userDAO;
 import com.mdkashem.dao.userDAOImplement;
 
@@ -14,9 +22,9 @@ import com.mdkashem.dao.userDAOImplement;
  */
 public class DAOUtilities {
 
-	private static final String CONNECTION_USERNAME = "postgres";
-	private static final String CONNECTION_PASSWORD = "Bangladesh88";
-	private static final String URL = "jdbc:postgresql://localhost:5432/BankDB";
+	private static final String CONNECTION_USERNAME = System.getenv("dbUserName"); //accessing the system environment variable for user Name
+	private static final String CONNECTION_PASSWORD = System.getenv("dbPassword");  //accessing the system environment variable for password
+	private static final String URL = System.getenv("dbConnectionString"); //accessing the system environment variable for  url
 	private static Connection connection;
 	
 	public static synchronized Connection getConnection() throws SQLException {
@@ -41,5 +49,21 @@ public class DAOUtilities {
 	public static userDAO getUserDAO() {
 		return new userDAOImplement();
 	
+	}
+	
+	public static RoleDAO getRoleDAO() {
+		return new RoleDAOImpl();
+	
+	}
+	public static StatusDAO getStatusDAO() {
+		return new StatusDAOImplements();
+	
+	}
+	
+	public static AccountTypeDAO getAccountTypeDAO() {
+		return new AccountTypeImplements();
+	}
+	public static AccountDAO getAccountDAO() {
+		return new AccountDAOImpl();
 	}
 }
