@@ -10,7 +10,8 @@ The Banking API will manage the bank accounts of its users. It will be managed b
 * Transfer of funds should be allowed between accounts owned by the same user, as well as between accounts owned by different users.
 
 ## Models
-The below models are an outline that supports the required features. They can be expanded or modified as needed.
+The below models are an outline that supports the required features.
+![](./images/diagram.PNG)
 
 ### **User**
 The User model keeps track of users information.
