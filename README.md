@@ -8,7 +8,8 @@ The Banking API will manage the bank accounts of its users. It will be managed b
 * All users must be able to update their personal information, such as username, password, first and last names, as well as email.
 * Accounts owned by users must support withdrawal, deposit, and transfer.
 * Transfer of funds should be allowed between accounts owned by the same user, as well as between accounts owned by different users.
-[![Watch the demo video](https://youtu.be/2mUOJjAhj4g)
+
+[![Watch the Demo](https://img.youtube.com/vi/2mUOJjAhj4g/0.jpg)](https://www.youtube.com/watch?v=2mUOJjAhj4g)
 
 ## Models
 The below models are an outline that supports the required features.
