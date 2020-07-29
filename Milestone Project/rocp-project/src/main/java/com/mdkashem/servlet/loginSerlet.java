@@ -1,27 +1,21 @@
 package com.mdkashem.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mdkashem.dao.userDAO;
-import com.mdkashem.model.User;
-import com.mdkashem.utilities.DAOUtilities;
-
 /**
- * Servlet implementation class DisplayAllUsersServlet
+ * Servlet implementation class loginSerlet
  */
-public class DisplayAllUsersServlet extends HttpServlet {
+public class loginSerlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayAllUsersServlet() {
+    public loginSerlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +25,7 @@ public class DisplayAllUsersServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		userDAO dao = DAOUtilities.getUserDAO();
-		List<User> userList = dao.getAllUser();
-		//System.out.println("username from all user " + request.getSession().getAttribute("username"));
-		request.getSession().setAttribute("tags", userList);
-		request.getRequestDispatcher("DisplayAllUser.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**

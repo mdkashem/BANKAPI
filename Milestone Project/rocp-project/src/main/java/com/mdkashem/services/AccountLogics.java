@@ -39,6 +39,10 @@ public class AccountLogics {
 		return this.account.updateAccount(acc);
 	}
 	
+	public boolean delete(int id) {
+		return this.account.deleteAccountByID(id);
+	}
+	
 	
 	
 

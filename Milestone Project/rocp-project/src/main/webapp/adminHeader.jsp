@@ -50,31 +50,36 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                           <li><a href="AddUser.jsp">Creat a New User</a></li>
-                          <li class="divider"></li>
-                          <li><a href="searchByTag.jsp">Modify User</a></li>
                            <li class="divider"></li>
-                          <li><a href="DisplayAllUsersServlet">View All Users</a></li>
-                           <li class="divider"></li>
-                          <li><a href="DisplayToDeleteServlet">Delete User</a></li>
+                          <li><a href="DisplayAllUsersServlet">View All Users</a></li> 
                         </ul>
                     </li> <!--  book tags end -->
-					
+				
 					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search User<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="BookPublishing">Search by Name </a></li>
+                          <li><a href="accounts/all">View All</a></li>
                           <li class="divider"></li>
-                          <li><a href="PublishBook">Search by Account Number</a></li>
                          
                         </ul>
                     </li>
-                    
+                    	<!--
                     <li class="dropdown">
+                    	
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                           <li><a href="getAllAccounts">View All Account </a></li>
                           <li class="divider"></li>
                           <li><a href="PublishBook">Search by Account number</a></li>
+                         
+                        </ul>
+                    </li>
+                    // -->
+                    <li class ="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User:  ${username }</a>
+                     <ul class="dropdown-menu">
+                          <li><a href="logout">Log out</a></li>
+                          
                          
                         </ul>
                     </li>

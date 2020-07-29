@@ -1,5 +1,5 @@
 	<!-- Header -->
-	<jsp:include page="adminHeader.jsp" />
+	<jsp:include page="userHeader.jsp" />
 	
 	<!-- JSTL includes -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -37,7 +37,7 @@
 		   <div class="form-group">
 		    <label for="title" class="col-sm-4 control-label">Password</label>
 		    <div class="col-sm-5">
-		      <input type="hidden" class="form-control" id="password" name="password" placeholder="password" required="required" value="${user.password }" />
+		      <input type="text" class="form-control" id="password" name="password" placeholder="password" required="required" value="${user.password }" />
 		    </div>
 		  </div>
 		  
@@ -73,6 +73,7 @@
 		      <button type="submit" class="btn btn-info">Update</button>
 		    </div>
 		  </div>
+		  
 		</form>
 
 	  </div>

@@ -1,17 +1,85 @@
-<jsp:include page="header.jsp"/>
-	
+<jsp:include page="userHeader.jsp"/>
+	<!-- JSTL includes -->
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 	
     <!-- Header -->
     <header>
         <div class="container">
+        
+        <c:choose>
+	      <c:when test="${not empty message }">
+     	     <p class="alert ${messageClass}">${message }</p>
+	     <%
+	        session.setAttribute("message", null);
+	        session.setAttribute("messageClass", null);
+	      %>
+	</c:when>
+	</c:choose>
             <div class="row">
                 <div class="col-lg-12">
 <!--                     <img class="img-responsive" src="resources/libraries/img/profile.png" alt=""> -->
                     <div class="intro-text">
-                  
-                        <span class="name">Bank API</span>
+                        <span class="name">User View</span>
                         <hr class="book-primary">
+                        <table class="table table-striped table-hover table-responsive pubhub-datatable">
                        
+			<thead>
+				<tr>
+					<td>User Id:</td>
+					<td>User Name:</td>
+					<td>First Name:</td>
+					<td>Last Name:</td>
+					<td>Account number:</td>
+					<td>Role ID:</td>
+					<td>Total balance:</td>
+					<td>Transfer:</td>
+					<td>Withdraw:</td>
+					<td>Deposit:</td>
+					<td>Update:</td>
+					
+				</tr>
+			</thead>
+			<tbody>
+				
+					<tr>
+						<td><c:out value="${user.userId}" /></td>
+						
+						<td><c:out value="${user.username}" /></td>
+						
+						<td><c:out value="${user.firstName}" /></td>
+						
+						<td><c:out value="${user.lastName}" /></td>
+						
+						<td><c:out value="${user.accountId}" /></td>
+						
+						<td><c:out value="${user.roleId}" /></td>
+						<td><c:out value="${userBalance}" /></td>
+						<td><form action="accounts/transfer?userID=${user.userId}" method="get">
+								<input type="hidden" name="userId" value="${user.userId}">
+								<button class="btn btn-primary">Transfer</button>
+							</form></td>
+						<td><form action="accounts/withdraw?userID=${user.userId}" method="get">
+								<input type="hidden" name="userId" value="${user.userId}">
+								<button class="btn btn-primary">Withdraw</button>
+							</form></td>
+							
+							<td><form action="accounts/deposit?userID=${user.userId}" method="get">
+								<input type="hidden" name="userId" value="${user.userId}">
+								<button class="btn btn-primary">Deposit</button>
+							</form></td>
+							
+						<td><form action="UpdateUserServlet?userID=${user.userId}" method="get">
+								<input type="hidden" name="userId" value="${user.userId}">
+								<button class="btn btn-primary">Update</button>
+							</form></td>
+						
+							
+					</tr>
+			
+			</tbody>
+		</table>
                     </div>
                 </div>
             </div>

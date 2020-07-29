@@ -95,9 +95,35 @@ public class RoleDAOImpl implements RoleDAO{
 		return role;
 	}
 
-	public List<Role> getRoleById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Role getRoleById(int id) {
+		Role role=null;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "SELECT * FROM role WHERE roleid = ?";
+			stmt = connection.prepareStatement(sql);
+			// This command populate the 1st '?' with the title and wildcards, between ' '
+			stmt.setInt(1, id);
+			ResultSet rs =stmt.executeQuery();
+			
+			while(rs.next()){
+				role=new Role();
+				role.setRoleId(Integer.parseInt(rs.getString("roleid")));
+				role.setRole(rs.getString("role"));
+			}
+				
+			
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			// We need to make sure our statements and connections are closed, 
+			// or else we could wind up with a memory leak
+			closeResources();
+		}
+
+		return role;
 	}
 
 	

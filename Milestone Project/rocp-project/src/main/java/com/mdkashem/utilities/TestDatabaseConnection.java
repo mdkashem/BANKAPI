@@ -1,15 +1,6 @@
 package com.mdkashem.utilities;
 
-import java.util.List;
-
-import javax.swing.text.Utilities;
-
 import com.mdkashem.dao.AccountDAO;
-import com.mdkashem.dao.RoleDAO;
-import com.mdkashem.model.Account;
-import com.mdkashem.model.AccountType;
-import com.mdkashem.model.User;
-import com.mdkashem.services.AccountLogics;
 
 public class TestDatabaseConnection {
 
@@ -39,18 +30,26 @@ public class TestDatabaseConnection {
 //	
 	
 		
-	//	User user2 = DAOUtilities.getUserDAO().getUserByName("kasem@yahoo.com");
+	//	DAOUtilities.getUserDAO().deleteUserByID(12);
 		
 		//System.out.println(user2.getFirstName());
 		//Account acc = new Account(102,253.52,1,1);
 		//AccountDAO database = DAOUtilities.getAccountDAO();
-		//System.out.println(database.findLastAccountId(acc));
+		//System.out.println(database.updateBalance(45, 7500.05));
 		
 		//AccountLogics acc = new AccountLogics();
 		//Account account = new Account(5,50050.69,1, 1);
 		
 //		System.out.println(acc.upadate(account));
 		
+		//String st = "hello world";
+		//System.out.println(st.substring(4, 10));
+		
+//		int [] ints = {1,2,3,4,5};
+//		//Collections.max(ints); it does not work because the ints array is not collection.  
+//		ArrayList<Integer> list = new ArrayList<>();
+//        
+//		Collections.addAll(list, 1,2,3,4,5,6);		
 		
 		
 	}

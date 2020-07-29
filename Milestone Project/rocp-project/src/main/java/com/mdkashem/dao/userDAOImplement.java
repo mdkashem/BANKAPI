@@ -75,6 +75,7 @@ public class userDAOImplement implements userDAO{
 			
 			while(rs.next()){
 				user=new User();
+				user.setUserId(Integer.parseInt(rs.getString("userId")));
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 				user.setFirstName(rs.getString("firstName"));
@@ -196,8 +197,29 @@ public class userDAOImplement implements userDAO{
 	}
 
 	public boolean deleteUserByID(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "DELETE FROM Users WHERE userid = ?";
+			stmt = connection.prepareStatement(sql);
+			
+			stmt.setInt(1, id);
+			if (stmt.executeUpdate() != 0)
+				return true;
+			else
+				return false;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}finally {
+			// We need to make sure our statements and connections are closed, 
+			// or else we could wind up with a memory leak
+			closeResources();
+		}
 	}
 	// Closing all resources to prevent memory leaks. 
 		// Ideally, you really want to close them in the reverse-order you open them
@@ -232,6 +254,42 @@ public class userDAOImplement implements userDAO{
 		public List<User> getUserByEmail(String email) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+		@Override
+		public User getUserByAccountId(int accId) {
+			User user=null;
+
+			try {
+				connection = DAOUtilities.getConnection();
+				String sql = "SELECT * FROM Users WHERE accountid = ?";
+				stmt = connection.prepareStatement(sql);
+				
+							stmt.setInt(1, accId);
+				ResultSet rs =stmt.executeQuery();
+				
+				while(rs.next()){
+					user=new User();
+					user.setUserId(rs.getInt("userid"));
+					user.setUsername(rs.getString("username"));
+					user.setPassword(rs.getString("password"));
+					user.setFirstName(rs.getString("firstName"));
+					user.setLastName(rs.getString("lastName"));
+					user.setAccountId(Integer.parseInt(rs.getString("accountid")));
+					user.setRoleId(Integer.parseInt(rs.getString("roleid")));
+					
+				}
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				// We need to make sure our statements and connections are closed, 
+				// or else we could wind up with a memory leak
+				closeResources();
+			}
+
+			return user;
 		}
 
 		

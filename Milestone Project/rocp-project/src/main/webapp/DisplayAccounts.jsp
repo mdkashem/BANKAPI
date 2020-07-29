@@ -19,47 +19,38 @@
 	</c:when>
 	</c:choose>
 	
-		<h1>Users <small>All Users</small></h1>
+		<h1>Accounts <small>All Accounts</small></h1>
 		<hr class="book-primary">
          
 		<table class="table table-striped table-hover table-responsive pubhub-datatable">
 			<thead>
 				<tr>
-					<td>User Id:</td>
-					<td>User Name:</td>
-					<td>First Name:</td>
-					<td>Last Name:</td>
-					<td>Account number:</td>
-					<td>Role ID:</td>
+					<td>Account Id:</td>
+					<td>Balance:</td>
+					<td>Status Id:</td>
+					<td>Type Id:</td>
 					<td>Delete:</td>
 					<td>Update:</td>
 					
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="user" items="${tags}">
+				<c:forEach var="account" items="${accountFromServlet}">
 					<tr>
-						<td><c:out value="${user.userId}" /></td>
+						<td><c:out value="${account.accountId}" /></td>
 						
-						<td><c:out value="${user.username}" /></td>
+						<td><c:out value="${account.balance}" /></td>
 						
-						<td><c:out value="${user.firstName}" /></td>
+						<td><c:out value="${account.statusId}" /></td>
 						
-						<td><c:out value="${user.lastName}" /></td>
+						<td><c:out value="${account.typeId}" /></td>
 						
-						<td><c:out value="${user.accountId}" /></td>
-						
-						<td><c:out value="${user.roleId}" /></td>
-						<td><form action="DeleteUserServlet?userID=${user.userId}" method="get">
-								<input type="hidden" name="userId" value="${user.userId}">
+						<td><form action="accounts/accountDelete?accountID=${account.accountId}" method="get">
+								<input type="hidden" name="accountId" value="${account.accountId}">
 								<button class="btn btn-primary">Delete</button>
 							</form></td>
-						<td><form action="accounts/AdminTransfer?userID=${user.userId}" method="get">
-								<input type="hidden" name="userId" value="${user.userId}">
-								<button class="btn btn-primary">Transfer</button>
-							</form></td>
-						<td><form action="UpdateUserServlet?userID=${user.userId}" method="get">
-								<input type="hidden" name="userId" value="${user.userId}">
+						<td><form action="accounts/accountUpdate?accountID=${account.accountId}" method="get">
+								<input type="hidden" name="accountId" value="${account.accountId}">
 								<button class="btn btn-primary">Update</button>
 							</form></td>
 						

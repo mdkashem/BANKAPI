@@ -1,6 +1,6 @@
 
 	<!-- Header -->
-	<jsp:include page="adminHeader.jsp" />
+	<jsp:include page="header.jsp" />
 	
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -9,8 +9,7 @@
 <!-- 	Just some stuff you need -->
 	<header>
 	  <div class="container">
-	  
-	  <c:choose>
+	     <c:choose>
 	     <c:when test="${not empty message }">
 	      <p class="alert ${messageClass}">${message }</p>
 	   <%
@@ -19,21 +18,14 @@
 	    %>
 	</c:when>
 	</c:choose>
-	
-	  <c:import url="/DisplayAllAccountTypeServlet" /> <!-- Call the servlet to load the list of type from database -->
-	
-	
-		<h1>Create New User</h1>
+		<h1>Register</h1>
 		<hr class="book-primary">
 
 		<!-- NOTE: This form uses the enctype="multipart/form-data" attribute because it contains a file upload control (<input type="file" ... />).
 				To support this special enctype, the PublishBookServlet also has the @MultiPartConfig annotation. You only need to use this
 				enctype and its corresponding annotation if you need to use a file upload control. Do not use it otherwise. -->
 				
-		<form action="register" method="post" class="form-horizontal">
-		       
-		       
-		        
+		<form action="accounts/register" method="post" class="form-horizontal">     
 		    <div class="form-group">
 		  			 <label  class="col-sm-4 control-label">Email for User Name </label>
 		          <div class="col-sm-5">
@@ -79,17 +71,7 @@
 		          <div class="col-sm-5">
 		         
 		             <select name="statusSelection" class="form-control" id="cars">
-                     <!--   <option value="Under Review">Under Review</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Approved">Approved</option> -->
-                         <c:forEach var="statusReference" items="${statusListServlet}">
-					
-						          <option><c:out value="${statusReference.status}" /> </option>
-						
-			
-				            </c:forEach>
-                        
-                
+                        <option value="UNDER REVIEW">Under Review</option>
                     </select>
 		        </div>
 		    </div> 
@@ -98,15 +80,9 @@
 		  			 <label  class="col-sm-4 control-label">Type of Account</label>
 		          <div class="col-sm-5">
 		             <select name="accountTypeSelection" class="form-control" id="cars">
-                      <!--  <option value="Checking">Checking</option>
-                        <option value="Saving">Saving</option>
-                        <option value="Business">Business</option>  --> 
-                            <c:forEach var="typeReference" items="${typeFromServlet}">
-					
-						          <option><c:out value="${typeReference.type}" /> </option>
-						
-			
-				            </c:forEach>
+                       <option value="CHECKING">CHECKING</option>
+                        <option value="SAVING">SAVING</option>
+                        <option value="BUSINESS">BUSINESS</option>   
                 
                     </select>
 		        </div>
@@ -121,13 +97,7 @@
 		          <div class="col-sm-5">
 		            
 		             <select name="roleTextBox" class="form-control" id="cars">
-                       		<c:forEach var="roleReference" items="${roleListServlet}">
-					
-						          <option><c:out value="${roleReference.role}" /> </option>
-						
-			
-				            </c:forEach>
-                
+                       		<option value="USER">User</option>
                     </select>
 		        </div>
 		    </div> 

@@ -39,6 +39,7 @@ public class UpdateUserFinallyServelet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		
 		String userId = request.getParameter("userId");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -47,10 +48,28 @@ public class UpdateUserFinallyServelet extends HttpServlet {
 		String accountId = request.getParameter("accountId");
 		String roleId = request.getParameter("roleId");
 		
-		User user = new User(Integer.parseInt(userId), username, password, fName, lName, Integer.parseInt(accountId), Integer.parseInt(roleId));
-		System.out.println(user);
+		User UpdatedUser = new User(Integer.parseInt(userId), username, password, fName, lName, Integer.parseInt(accountId), Integer.parseInt(roleId));
+		System.out.println(UpdatedUser);
+		if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("Admin")) {
+			boolean isUpdated=	userServices.update(UpdatedUser);
+			request.getSession().setAttribute("message", "Update successfull.");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+    	    request.getRequestDispatcher("DisplayAllUsersServlet").forward(request, response);
+		}else if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("User")) {
+			userServices.update(UpdatedUser);
+			request.getSession().setAttribute("message", "Your Information Update successfully.");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			request.getSession().setAttribute("user", userServices.findUserByName(username));
+    	    request.getRequestDispatcher("user.jsp").forward(request, response);
+		}else {
+			userServices.update(UpdatedUser);
+			request.getSession().setAttribute("message", "Your Information has been Updated successfully.");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			//request.getSession().setAttribute("user", userServices.findUserByName(username));
+			 request.getRequestDispatcher("DisplayAllUsersServlet").forward(request, response);
+		}
 		
-	boolean isUpdated=	userServices.update(user);
+	
 		
 		
 	

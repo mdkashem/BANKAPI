@@ -120,10 +120,55 @@ public class AccountDAOImpl implements AccountDAO{
 			closeResources();
 		}
 	}
+	
+	public boolean updateBalance(int accountId, double newBalance) {
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "UPDATE account SET balance=? WHERE accountid=?";
+			stmt = connection.prepareStatement(sql);
+			
+			stmt.setDouble(1, newBalance);
+			stmt.setInt(2, accountId);
+			
+			
+			
+			//System.out.println(stmt);
+			
+			if (stmt.executeUpdate() != 0)
+				return true;
+			else
+				return false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeResources();
+		}
+	}
 
 	public boolean deleteAccountByID(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "DELETE FROM account WHERE accountid = ?";
+			stmt = connection.prepareStatement(sql);
+			
+			stmt.setInt(1, id);
+			if (stmt.executeUpdate() != 0)
+				return true;
+			else
+				return false;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}finally {
+			// We need to make sure our statements and connections are closed, 
+			// or else we could wind up with a memory leak
+			closeResources();
+		}
 	}
 	
 	// Closing all resources to prevent memory leaks. 

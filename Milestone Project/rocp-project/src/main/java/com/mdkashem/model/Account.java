@@ -1,7 +1,13 @@
 package com.mdkashem.model;
 
-public class Account {
-	  private int accountId; // primary key
+import java.io.Serializable;
+
+public class Account implements Serializable{
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int accountId; // primary key
 	  private double balance;  // not null
 	  private int statusId ;
 	  private int typeId;

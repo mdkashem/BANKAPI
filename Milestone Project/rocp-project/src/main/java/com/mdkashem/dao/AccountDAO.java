@@ -12,5 +12,6 @@ public interface AccountDAO {
 		public Account getAccountById(int id);
 		public boolean updateAccount(Account account);
 		public boolean deleteAccountByID(int id);
+		public boolean updateBalance(int accountId, double newBalance);
 
 }

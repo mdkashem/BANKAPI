@@ -30,13 +30,29 @@ public class UpdateUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String userId = request.getParameter("userId");
-		User user = userServices.findUserById(Integer.parseInt(userId));
-		request.setAttribute("user", user);
-		request.getRequestDispatcher("userDetails.jsp").forward(request, response);
+		if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("Admin")) {
+			String userId = request.getParameter("userId");
+			User user = userServices.findUserById(Integer.parseInt(userId));
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("userDetails.jsp").forward(request, response);
+		}else if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("Employee") & (int)request.getSession().getAttribute("userId") != Integer.parseInt(request.getParameter("userId"))){
+			request.getSession().setAttribute("message", "Permission Denied!");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			request.getRequestDispatcher("employee.jsp").forward(request, response);
+		}else {
+			//request.getSession().setAttribute("message", "Permission denied!");
+			//request.getSession().setAttribute("messageClass", "alert-danger");
+			//request.getRequestDispatcher("user.jsp").forward(request, response);
+			String userId = request.getParameter("userId");
+			User user = userServices.findUserById(Integer.parseInt(userId));
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("userDetails.jsp").forward(request, response);
+		}
+		
+		
+		
+		
 	}
 
 	/**

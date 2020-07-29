@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mdkashem.dao.AccountDAO;
 import com.mdkashem.dao.AccountTypeDAO;
@@ -23,7 +24,7 @@ import com.mdkashem.utilities.DAOUtilities;
 /**
  * Servlet implementation class CreateUserServlet
  */
-@WebServlet("/CreateUserServlet")
+@WebServlet("/register")
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +42,18 @@ public class CreateUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		HttpSession session = request.getSession(false);
+		if(session == null ) {
+			
+			// request.getSession().setAttribute("message", "You Logged Out!");
+		 	 request.getRequestDispatcher("login.jsp").forward(request, response);
+		}else if(session.getAttribute("username")==null){
+			System.out.println("session not null" + " user "+session.getAttribute("username"));
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			
+		}else {
+			 request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 		
 	}
 
@@ -49,8 +61,6 @@ public class CreateUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		
 
 		String username = request.getParameter("userNameTextBox");
@@ -69,55 +79,35 @@ public class CreateUserServlet extends HttpServlet {
 		int statusId = statusDB.getStatusByName(statusName).getStatusId();
 		RoleDAO roleDB = DAOUtilities.getRoleDAO();
 		int roleId = roleDB.getRoleByName(roleName).getRoleId();
-		saveAccount(request, response, username, password, fName, lName, balance, statusId, typeId, roleId);
-		//saveAccount( request, response,  balance,  statusId,  roleid);
-	   //  saveUser(request, response, username, password, fName, lName, accId, roleid);
+		/*
+		 * SaveAccount method create user account only if the role is admin 
+		 */
+		if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("Admin")) {
+			saveAccount(request, response, username, password, fName, lName, balance, statusId, typeId, roleId);
+		}else if(((String) request.getSession().getAttribute("user_role")).equalsIgnoreCase("Employee")){
+			request.getSession().setAttribute("message", "Permission Denied!");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			request.getRequestDispatcher("employee.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("message", "Permission denied!");
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			request.getRequestDispatcher("user.jsp").forward(request, response);
+		}
 		
-		    
-		
-		System.out.println(username + " " +password + " " + fName + " " + lName + " "+ balance+" " +statusName + " " + typeName +" "+ roleName);
+		//System.out.println(username + " " +password + " " + fName + " " + lName + " "+ balance+" " +statusName + " " + typeName +" "+ roleName);
 		
 		//if(LogInStatus.isLogged) {
 			
-			userDAO database = DAOUtilities.getUserDAO();
-			Role role = new Role(roleId, roleName);
+		//	userDAO database = DAOUtilities.getUserDAO();
+		//	Role role = new Role(roleId, roleName);
 			
 		//	User user = new User( username, password,fName, lName, email,  role);
 			
 		//	boolean isSuccess = database.addUser(user, role.getRoleId());
 			//request.getSession().setAttribute("isbn_13", temTag.getIsbn13());
-			request.getSession().setAttribute("tag_name", username);
-			request.getRequestDispatcher("DisplayTag.jsp").forward(request, response);
 			
-	//	}
 		
-		/*
-		userDAO database = DAOUtilities.getUserDAO();
-		User tempUser = database.getBookByISBN(isbn13);
-		TagDAO tag_database = DAOUtilities.getTagDAO();
-		if (tempBook != null) {
-			// ASSERT: book with isbn already exists
-
-			//req.getSession().setAttribute("message", "ISBN of " + isbn13 + " is already in use");
-			//req.getSession().setAttribute("messageClass", "alert-danger");
-			//req.getRequestDispatcher("publishBook.jsp").forward(req, resp);
-			BookTag bookTag = new BookTag();
-			
-			bookTag.setIsbn13(req.getParameter("isbn13"));
-			bookTag.setTagName(req.getParameter("tagName"));
-			boolean isSuccess = tag_database.addTag(bookTag);
-			
-			//TagDAO dao = DAOUtilities.getTagDAO();
-			List<BookTag> tagList = tag_database.getAllTag();
-			req.getSession().setAttribute("tags", tagList);
-			req.getRequestDispatcher("DisplayAllTag.jsp").forward(req, resp);
-			
-		} else {
-			
-			req.getRequestDispatcher("DisplayAllTag.jsp").forward(req, resp);
-		
-		} //end else
-		*/
+	
 	}//end dopost
 	
 	/*
@@ -148,7 +138,8 @@ public class CreateUserServlet extends HttpServlet {
 			user.setAccountId(accId);
 			user.setRoleId(roleId);
 			database.addUser(user);
-		
+			request.getSession().setAttribute("message", "you successfully added the user.");
+    	    request.getRequestDispatcher("DisplayAllUsersServlet").forward(request, response);
 		} //end else
 		
 	}// saveUser end 

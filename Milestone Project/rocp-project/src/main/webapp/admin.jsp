@@ -10,7 +10,7 @@
                     <div class="intro-text">
                         <span class="name">Admin View</span>
                         <hr class="book-primary">
-                        <span class="skills">Exchange Ideas.</span>
+                        
                     </div>
                 </div>
             </div>
